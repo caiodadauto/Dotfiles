@@ -4,7 +4,7 @@ vg.python_recommended_style = 0
 
 opt.hidden = true
 opt.backup = false
-opt.undodir = '/home/caio/.local/share/nvim/undodir'
+opt.undodir = vim.fn.expand "$HOME" .. '/.local/share/nvim/undodir'
 opt.incsearch = true
 opt.scrolloff = 8
 opt.signcolumn = 'yes'

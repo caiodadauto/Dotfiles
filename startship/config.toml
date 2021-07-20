@@ -1,0 +1,11 @@
+[python]
+disabled = true
+
+[package]
+symbol = ""
+
+[conda]
+symbol = ""
+
+[lua]
+disabled = true

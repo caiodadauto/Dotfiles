@@ -12,5 +12,3 @@ matplotlib
 seaborn
 sweetviz
 networkx
-pyarrow==4.0.*
-"dask[complete]"

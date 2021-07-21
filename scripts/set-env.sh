@@ -23,7 +23,7 @@ cd $HOME/.cargo/bin
 ./cargo install $(awk '{print $1}' $HOME/Dotfiles/programs/cargo.list)
 
 # Starship
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b $HOME/.local/bin
 
 # Neovim
 cd ~

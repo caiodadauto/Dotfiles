@@ -4,5 +4,6 @@ tree.setup {
     ensure_installed = "all",
     highlight = {
         enable = true,
+        disable = { "haskell"},
     },
 }

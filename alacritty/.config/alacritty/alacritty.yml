@@ -50,15 +50,15 @@ colors:
 
 font:
   normal:
-    family: Iosevka
+    family: Iosevka Nerd Font Mono
     style: Medium
     bold:
-      family: Iosevka
-      style: Heavy
+      family: Iosevka Nerd Font Mono
+      style: Bold
     italic:
-      family: Iosevka
+      family: Iosevka Nerd Font Mono
       style: Medium Italic
     bold_italic:
-      family: Iosevka
+      family: Iosevka Nerd Font Mono
       style: Heavy Italic
   size: 17.0

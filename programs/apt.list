@@ -5,6 +5,7 @@ stow
 lzma
 python-tk
 sqlite3
+libffi-dev
 libsqlite3-dev
 libreadline-dev
 libbz2-dev

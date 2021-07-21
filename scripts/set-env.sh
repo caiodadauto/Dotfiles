@@ -3,7 +3,14 @@
 # System
 mkdir -p ~/.config
 mkdir -p ~/.local/bin
-sudo pacman install $(awk '{print $1}' ../programs/pacman.list) -y
+mkdir -p ~/.local/share/zsh
+echo -e '\ndeb http://deb.debian.org/debian buster main' | sudo tee -a /etc/apt/sources.list.d/stable.list
+echo -e 'deb-src http://deb.debian.org/debian buster main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
+echo -e 'deb http://deb.debian.org/debian-security/ buster/updates main' | sudo tee -a /etc/apt/sources.list.d/stable.list
+echo -e 'deb-src http://deb.debian.org/debian-security/ buster/updates main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
+echo -e 'deb http://deb.debian.org/debian buster-updates main' | sudo tee -a /etc/apt/sources.list.d/stable.list
+echo -e 'deb-src http://deb.debian.org/debian buster-updates main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
+sudo pacman install $(awk '{print $1}' ../programs/apt.list) -y
 sudo npm i -g pyright
 
 # FZF
@@ -35,5 +42,11 @@ cd $HOME/.pyenv/bin
 ./pyenv global 3.8.9
 ./pyenv virtualenv 3.8.9 ml
 
-# ZSH
+# Profile
+echo -e '\nexport XDG_CONFIG_HOME=$HOME/.config' >> $HOME/.bashrc
+echo -e '\nexport XDG_CACHE_HOME=$HOME/.cache' >> $HOME/.bashrc
+echo -e '\nexport XDG_DATA_HOME=$HOME/.local/share' >> $HOME/.bashrc
+echo -e '\nexport export EDITOR="nvim"' >> $HOME/.bashrc
+echo -e '\nexport TERMINAL="alacritty"' >> $HOME/.bashrc
+echo -e '\nexport ZDOTDIR=$HOME/.config/zsh' >> $HOME/.bashrc
 echo -e '\nexec zsh' >> $HOME/.bashrc

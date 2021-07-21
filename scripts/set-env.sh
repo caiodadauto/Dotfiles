@@ -35,3 +35,5 @@ cd $HOME/.pyenv/bin
 ./pyenv global 3.8.9
 ./pyenv virtualenv 3.8.9 ml
 
+# ZSH
+echo -e '\nexec zsh' >> $HOME/.bashrc

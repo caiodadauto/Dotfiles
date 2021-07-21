@@ -3,6 +3,7 @@
 # System
 mkdir -p ~/.config
 mkdir -p ~/.local/bin
+mkdir -p ~/.local/share/zsh
 sudo pacman install $(awk '{print $1}' ../programs/pacman.list) -y
 sudo npm i -g pyright
 

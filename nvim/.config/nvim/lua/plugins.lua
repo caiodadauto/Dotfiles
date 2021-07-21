@@ -10,6 +10,7 @@ return packer.startup(
         use {'airblade/vim-rooter'}
         use {'farmergreg/vim-lastplace'}
         use {'windwp/nvim-projectconfig'}
+        use {'untitled-ai/jupyter_ascending.vim'}
         use {
             'lukas-reineke/indent-blankline.nvim',
             config = function()

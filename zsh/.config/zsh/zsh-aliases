@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/zsh
+
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
@@ -9,6 +10,8 @@ alias top="btm"
 alias cd="z"
 alias ml="pyenv activate ml"
 alias nvimrc='nvim ~/.config/nvim/'
+alias note="jupyter notebook"
+alias note-sync="python -m jupyter_ascending.scripts.make_pair --base"
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
 # get fastest mirrors

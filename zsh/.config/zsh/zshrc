@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete

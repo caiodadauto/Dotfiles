@@ -10,7 +10,7 @@ echo -e 'deb http://deb.debian.org/debian-security/ buster/updates main' | sudo 
 echo -e 'deb-src http://deb.debian.org/debian-security/ buster/updates main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
 echo -e 'deb http://deb.debian.org/debian buster-updates main' | sudo tee -a /etc/apt/sources.list.d/stable.list
 echo -e 'deb-src http://deb.debian.org/debian buster-updates main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
-sudo pacman install $(awk '{print $1}' ../programs/apt.list) -y
+sudo apt install $(awk '{print $1}' ../programs/apt.list) -y
 sudo npm i -g pyright
 
 # FZF

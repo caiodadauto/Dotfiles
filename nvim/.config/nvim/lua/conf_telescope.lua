@@ -19,6 +19,7 @@ M.config = function()
     telescope.load_extension('fzf')
 
     keymap('n', '<leader>p', [[:lua require('telescope.builtin').find_files()<CR>]])
+    keymap('n', '<leader>fh', [[:lua require('telescope.builtin').find_files({hidden = true})<CR>]])
     keymap('n', '<leader>fg', [[:lua require('telescope.builtin').live_grep()<CR>]])
     keymap('n', '<leader>fb', [[:lua require('telescope.builtin').buffers()<CR>]])
 end

@@ -3,6 +3,7 @@
 # System
 mkdir -p ~/.config
 mkdir -p ~/.local/bin
+mkdir -p ~/.local/share/zsh
 sudo apt update
 sudo apt upgrade -y
 sudo apt install $(awk '{print $1}' ../programs/apt.list) -y

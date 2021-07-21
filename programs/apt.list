@@ -1,0 +1,10 @@
+wget
+stow
+lzma
+python-tk
+sqlite3
+libsqlite3-dev
+libreadline-dev
+libbz2-dev
+zliblg-dev
+npm

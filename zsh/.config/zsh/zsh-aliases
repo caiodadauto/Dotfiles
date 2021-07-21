@@ -7,8 +7,7 @@ alias ls="exa"
 alias ll="exa -l"
 alias top="btm"
 alias cd="z"
-alias ml="conda activate ml"
-alias base="conda activate base"
+alias ml="pyenv activate ml"
 alias nvimrc='nvim ~/.config/nvim/'
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 

@@ -1,6 +1,7 @@
 pynvim
 ipython
 jupyter
+jupyter_ascending
 ipywidgets
 numpy
 numba

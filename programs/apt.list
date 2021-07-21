@@ -6,5 +6,5 @@ sqlite3
 libsqlite3-dev
 libreadline-dev
 libbz2-dev
-zliblg-dev
+zlib1g-dev
 npm

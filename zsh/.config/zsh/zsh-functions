@@ -33,3 +33,7 @@ function zsh_add_completion() {
 function jupy2md() {
     jupyter nbconvert "$1" --to markdown --output "$2"
 }
+
+function per2jupy() {
+    jupytext "$1" --to ipynb
+}

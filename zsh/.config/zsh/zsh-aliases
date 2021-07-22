@@ -9,7 +9,7 @@ alias top="btm"
 alias cd="z"
 alias ml="pyenv activate ml"
 alias nvimrc='nvim ~/.config/nvim/'
-alias note="jupyter notebook"
+alias note="jupyter notebook --no-browser --NotebookApp.token='' --NotebookApp.password=''"
 alias note-sync="python -m jupyter_ascending.scripts.make_pair --base"
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
@@ -27,7 +27,7 @@ alias fgrep='fgrep --color=auto'
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
-alias rm='rm -i'
+alias rm='rm -I'
 
 # easier to read disk
 alias df='df -h'                          # human-readable sizes

@@ -10,5 +10,4 @@ libsqlite3-dev
 libreadline-dev
 libbz2-dev
 zlib1g-dev
-nodejs
 ranger

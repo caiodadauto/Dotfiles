@@ -10,9 +10,8 @@ echo -e 'deb http://deb.debian.org/debian-security/ buster/updates main' | sudo 
 echo -e 'deb-src http://deb.debian.org/debian-security/ buster/updates main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
 echo -e 'deb http://deb.debian.org/debian buster-updates main' | sudo tee -a /etc/apt/sources.list.d/stable.list
 echo -e 'deb-src http://deb.debian.org/debian buster-updates main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 sudo apt install $(awk '{print $1}' ../programs/apt.list) -y
-sudo npm i -g pyright
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -33,8 +32,6 @@ chmod +x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 git clone https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-# Install Miniconda
 
 # Pyenv
 curl https://pyenv.run | bash

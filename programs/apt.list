@@ -10,5 +10,5 @@ libsqlite3-dev
 libreadline-dev
 libbz2-dev
 zlib1g-dev
-npm
+nodejs
 ranger

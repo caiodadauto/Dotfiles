@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/zsh
 
 # System
 mkdir -p ~/.config
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/zsh
-sudo pacman install $(awk '{print $1}' ../programs/pacman.list) -y
-sudo npm i -g pyright
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+sudo pacman -Syu $(awk '{print $1}' ../programs/apt.list) -y
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -17,24 +17,16 @@ cd $HOME/.cargo/bin
 ./cargo install $(awk '{print $1}' $HOME/Dotfiles/programs/cargo.list)
 
 # Starship
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b $HOME/.local/bin
 
 # Neovim
-cd ~
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-chmod +x nvim.appimage
-sudo mv nvim.appimage /usr/local/bin/nvim
 git clone https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-# Install Miniconda
 
 # Pyenv
 curl https://pyenv.run | bash
 cd $HOME/.pyenv/bin
-./pyenv install 3.8.9
-./pyenv global 3.8.9
-./pyenv virtualenv 3.8.9 ml
-
-# ZSH
-echo -e '\nexec zsh' >> $HOME/.bashrc
+./pyenv install 3.8.5
+./pyenv global 3.8.5
+./pyenv virtualenv 3.8.5 phd
+./pyenv virtualenv 3.8.5 fin

@@ -5,7 +5,8 @@ disabled = true
 symbol = ""
 
 [conda]
-symbol = ""
+symbol = "🅒 "
+ignore_base = false
 
 [lua]
 disabled = true

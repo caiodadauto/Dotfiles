@@ -57,6 +57,11 @@ bindkey "^j" down-line-or-beginning-search # Down
 bindkey -r "^u"
 bindkey -r "^d"
 
+#NVM
+
+[ -s "$XDG_CONFIG_HOME/nvm/nvm.sh" ] && \. "$XDG_CONFIG_HOME/nvm/nvm.sh"  # This loads nvm
+[ -s "$XDG_CONFIG_HOME/nvm/bash_completion" ] && \. "$XDG_CONFIG_HOME/nvm/bash_completion"  # This loads nvm bash_completion
+
 # FZF 
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
@@ -64,7 +69,7 @@ bindkey -r "^d"
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 compinit
 
-conda activate ml
+set-base
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line

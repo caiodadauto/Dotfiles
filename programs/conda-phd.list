@@ -1,0 +1,9 @@
+numpy
+numba
+pandas
+Cython
+networkx
+graph-tool
+scikit-learn
+tensorflow
+sonnet-dm

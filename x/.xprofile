@@ -6,7 +6,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 # Environment variables set everywhere
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-export BROWSER="firefox"
+export BROWSER="qutebrowser"
 
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh

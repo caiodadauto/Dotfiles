@@ -5,8 +5,8 @@ M.config = function()
     lualine.setup{
         options = {
             theme = 'nord',
-            section_separators = {'', ''},
-            component_separators = {' ', ''},
+            -- section_separators = {'', ''},
+            -- component_separators = {' ', ''},
             icons_enabled = true,
             left_padding = 1.4,
         },

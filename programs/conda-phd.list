@@ -6,4 +6,4 @@ networkx
 graph-tool
 scikit-learn
 tensorflow
-sonnet-dm
+dm-sonnet

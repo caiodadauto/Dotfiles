@@ -7,3 +7,10 @@ graph-tool
 scikit-learn
 tensorflow
 dm-sonnet
+poetry
+hydra-core
+tqdm
+ipython
+jupyter
+matplotlib
+seaborn

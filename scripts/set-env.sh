@@ -25,10 +25,9 @@ git clone https://github.com/wbthomason/packer.nvim\
 
 # Install Miniconda
 cd /tmp
-wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
-chmod +x Miniconda3-py38_4.10.3-Linux-x86_64.sh
-./Miniconda3-py38_4.10.3-Linux-x86_64.sh
-$HOME/.miniconda3/bin/conda create --name phd python=3.8.5
-$HOME/.miniconda3/bin/conda create --name fin python=3.8.5
-$HOME/.miniconda3/bin/conda config --set changeps1 False
+curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh
+bash Mambaforge-$(uname)-$(uname -m).sh
+# $HOME/.miniconda3/bin/conda create --name phd python=3.8.5
+# $HOME/.miniconda3/bin/conda create --name fin python=3.8.5
+# $HOME/.miniconda3/bin/conda config --set changeps1 False
 

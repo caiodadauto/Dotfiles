@@ -2,9 +2,9 @@ build-essential
 zsh
 wget
 stow
-liblzma-dev
 python-tk
 sqlite3
+liblzma-dev
 libffi-dev
 libsqlite3-dev
 libreadline-dev

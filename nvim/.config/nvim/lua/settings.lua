@@ -30,3 +30,4 @@ cmd [[
     endif
 ]]
 cmd [[colorscheme nord]]
+cmd [[ let g:rooter_patterns = ['.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile'] ]]

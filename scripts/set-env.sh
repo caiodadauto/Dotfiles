@@ -10,7 +10,7 @@ mkdir -p ~/.local/share/zsh
 # echo -e 'deb-src http://deb.debian.org/debian-security/ buster/updates main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
 # echo -e 'deb http://deb.debian.org/debian buster-updates main' | sudo tee -a /etc/apt/sources.list.d/stable.list
 # echo -e 'deb-src http://deb.debian.org/debian buster-updates main\n' | sudo tee -a /etc/apt/sources.list.d/stable.list
- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 sudo apt install $(awk '{print $1}' ../programs/apt.list) -y
 
 # FZF

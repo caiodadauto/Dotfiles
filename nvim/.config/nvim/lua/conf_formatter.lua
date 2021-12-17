@@ -3,6 +3,14 @@ local M = {}
 M.config = function()
     formatter = require('formatter')
 
+    local texpretty = function()
+        return {
+            exe = "texpty",
+            args = {"--no-comment-banner"},
+            stdin = true,
+            ignore_exitcode = true
+        }
+    end
     local black = function()
         return {
             exe = "black",
@@ -21,7 +29,7 @@ M.config = function()
 
     formatter.setup({
         logging = false,
-        filetype = { python = { black }, cpp = { clangformat } }
+        filetype = { python = { black }, cpp = { clangformat }, tex = { texpretty } }
     })
 
     keymap('n', '<leader>F', [[: Format<CR>]])

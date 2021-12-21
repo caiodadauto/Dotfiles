@@ -1,30 +1,40 @@
 local M = {}
 
 M.config = function()
-    formatter = require('formatter')
+    formatter = require("formatter")
 
     local black = function()
         return {
             exe = "black",
-            args = {"--quiet", "-"},
-            stdin = true
+            args = { "--quiet", "-" },
+            stdin = true,
         }
     end
     local clangformat = function()
         return {
             exe = "clang-format",
-            args = {[[-style="{BasedOnStyle: Mozilla, IndentWidth: 4,TabWidth: 4}"]]},
+            args = { [[-style="{BasedOnStyle: Mozilla, IndentWidth: 4,TabWidth: 4}"]] },
             stdin = true,
-            cwd = vim.fn.expand('%:p:h')
+            cwd = vim.fn.expand("%:p:h"),
+        }
+    end
+    local stylua = function()
+        return {
+            exe = "stylua",
+            args = {
+                "--config-path " .. os.getenv("XDG_CONFIG_HOME") .. "/stylua/stylua.toml",
+                "-",
+            },
+            stdin = true,
         }
     end
 
     formatter.setup({
         logging = false,
-        filetype = { python = { black }, cpp = { clangformat } }
+        filetype = { python = { black }, cpp = { clangformat }, lua = { stylua } },
     })
 
-    keymap('n', '<leader>F', [[: Format<CR>]])
+    keymap("n", "<leader>F", [[: Format<CR>]])
 end
 
 return M

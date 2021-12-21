@@ -1,11 +1,11 @@
-#!/bin/zsh
+#!/bin/bash
 
 # System
 mkdir -p ~/.config
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/zsh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-sudo pacman -Syu $(awk '{print $1}' ../programs/pacman.list)
+sudo apt install $(awk '{print $1}' ../programs/apt.list)
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -20,14 +20,13 @@ cd $HOME/.cargo/bin
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b $HOME/.local/bin
 
 # Neovim
+cd ~
+wget https://github.com/neovim/neovim/releases/download/v0.6.0/nvim.appimage
+chmod +x nvim.appimage
+sudo mv nvim.appimage /usr/local/bin/nvim
 git clone https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# Install Miniconda
-cd /tmp
+# Mamba
 curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh
 bash Mambaforge-$(uname)-$(uname -m).sh
-# $HOME/.miniconda3/bin/conda create --name phd python=3.8.5
-# $HOME/.miniconda3/bin/conda create --name fin python=3.8.5
-# $HOME/.miniconda3/bin/conda config --set changeps1 False
-

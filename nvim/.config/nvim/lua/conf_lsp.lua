@@ -1,30 +1,32 @@
 local M = {}
 
 M.config = function()
-    local lsp = require('lspconfig')
-    local compe = require('compe')
+    local lsp = require("lspconfig")
+    local cmp = require("cmp")
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-    keymap('n', 'gd', [[:lua vim.lsp.buf.definition()<CR>]])
-    keymap('n', '<leader>h', [[:lua vim.lsp.buf.hover()<CR>]])
-    keymap('n', '<leader>r', [[:lua vim.lsp.buf.rename()<CR>]])
-    keymap('n', '<leader>R', [[:lua vim.lsp.buf.references()<CR>]])
-    keymap('n', '[d', [[:lua vim.lsp.diagnostic.goto_prev()<CR>]])
-    keymap('n', ']d', [[:lua vim.lsp.diagnostic.goto_next()<CR>]])
+    keymap("n", "gd", [[:lua vim.lsp.buf.definition()<CR>]])
+    keymap("n", "<leader>h", [[:lua vim.lsp.buf.hover()<CR>]])
+    keymap("n", "<leader>r", [[:lua vim.lsp.buf.rename()<CR>]])
+    keymap("n", "<leader>R", [[:lua vim.lsp.buf.references()<CR>]])
+    keymap("n", "[d", [[:lua vim.lsp.diagnostic.goto_prev()<CR>]])
+    keymap("n", "]d", [[:lua vim.lsp.diagnostic.goto_next()<CR>]])
 
----------------------------------------------------------------------------------------
--- From https://github.com/folke/trouble.nvim/issues/52
----------------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------
+    -- From https://github.com/folke/trouble.nvim/issues/52
+    ---------------------------------------------------------------------------------------
     local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
     for type, icon in pairs(signs) do
         local hl = "LspDiagnosticsSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
----------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------
 
----------------------------------------------------------------------------------------
--- From https://github.com/ChristianChiarulli/LunarVim/blob/rolling/lua/lsp/init.lua
----------------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------
+    -- From https://github.com/ChristianChiarulli/LunarVim/blob/rolling/lua/lsp/init.lua
+    ---------------------------------------------------------------------------------------
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = {
             prefix = "",
@@ -62,11 +64,11 @@ M.config = function()
         "   (TypeParameter)",
     }
 
----------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------
 
-
-    lsp.pyright.setup{ on_attach = require('compe').on_attach,
+    lsp.pyright.setup({
+        on_attach = cmp.on_attach,
         settings = {
             python = {
                 analysis = {
@@ -75,8 +77,9 @@ M.config = function()
                 },
             },
         },
-    }
-    lsp.texlab.setup{ on_attach = compe.on_attach }
+        capabilities = capabilities,
+    })
+    lsp.texlab.setup({ on_attach = cmp.on_attach, capabilities = capabilities })
 end
 
 return M

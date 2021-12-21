@@ -100,13 +100,18 @@ return packer.startup(
             end
         }
         use {
-            'hrsh7th/nvim-compe',
+            'hrsh7th/nvim-cmp',
             config = function()
-                require('conf_compe').config()
+                require('conf_cmp').config()
             end,
             requires = {
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-path',
+                'hrsh7th/cmp-cmdline',
                 "L3MON4D3/LuaSnip",
-                "rafamadriz/friendly-snippets"
+                "rafamadriz/friendly-snippets",
+                "saadparwaiz1/cmp_luasnip"
             }
         }
         use {

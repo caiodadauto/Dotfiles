@@ -15,7 +15,7 @@ M.config = function()
             lualine_b = {{'branch', icon = ' '}},
             lualine_c = {{ 'filename', file_status = true }},
             lualine_x = {'encoding', 'fileformat', 'filetype'},
-            lualine_y = {{ 'diagnostics', sources = {'nvim_lsp'}}},
+            lualine_y = {{'diagnostics', sources = {'nvim_diagnostic'}}},
             lualine_z = {'location' },
         },
         inactive_sections = {

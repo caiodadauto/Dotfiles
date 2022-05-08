@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+# NNN conf https://forum.porteus.org/viewtopic.php?t=9659
+# NORD='0B0B04060006060009060B06'
+# ONEDARK='0404040000000600010F0F02'
+# PLAIN='00004B230000000000000000'
 HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE="$XDG_DATA_HOME"/zsh/history
@@ -12,6 +16,9 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship/config.toml
 export NVM_DIR="$HOME/.config/nvm"
 export GCM_CREDENTIAL_STORE="gpg"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export NNN_FCOLORS='0B0B04060006060009060B06'
+export NNN_PLUG='c:autojump;d:diffs;f:finder;o:fzopen;m:nmount;x:togglex;p:preview-tui;v:preview-tabbed;'
+export NNN_FIFO='/tmp/nnn.fifo'
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

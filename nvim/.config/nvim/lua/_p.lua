@@ -86,13 +86,13 @@ return packer.startup(function()
     })
 
     -- Language Server
-    use({ "ms-jpq/coq_nvim", branch = "coq" })
     use({
         "neovim/nvim-lspconfig",
-        config = function()
-            require("conf_lsp").config()
-        end,
+        -- config = function()
+        --     require("conf_lsp").config()
+        -- end,
     })
+    use({ "ms-jpq/coq_nvim", branch = "coq" })
     use({
         "mhartington/formatter.nvim",
         config = function()

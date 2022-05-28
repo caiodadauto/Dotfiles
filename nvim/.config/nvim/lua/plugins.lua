@@ -4,12 +4,20 @@ return packer.startup(function()
     use({ "wbthomason/packer.nvim" })
 
     -- Productivity
-    -- use({ "tpope/vim-repeat" })
-    -- use({ "tpope/vim-surround" })
+    use({
+        "echasnovski/mini.nvim",
+        branch = "stable",
+        config = function()
+            -- require("conf_mini").config()
+            require(mini.trailspace).setup()
+        end,
+    })
+    use({ "tpope/vim-repeat" })
+    use({ "tpope/vim-surround" })
     -- use({ "airblade/vim-rooter" })
-    -- use({ "farmergreg/vim-lastplace" })
+    use({ "farmergreg/vim-lastplace" })
     -- use({ "windwp/nvim-projectconfig" })
-    -- use({ "untitled-ai/jupyter_ascending.vim" })
+    use({ "untitled-ai/jupyter_ascending.vim" })
     -- use({
     --     "lukas-reineke/indent-blankline.nvim",
     --     config = function()
@@ -65,11 +73,11 @@ return packer.startup(function()
     -- })
 
     -- Style
-    -- use {'sainnhe/gruvbox-material'}
-    use({ "ChristianChiarulli/nvcode-color-schemes.vim" })
+    use({ "shaunsingh/nord.nvim" })
+    use({ "sainnhe/gruvbox-material" })
     use({
         "norcalli/nvim-colorizer.lua",
-        config = function() -- FIXME: Create conf file
+        config = function()
             require("colorizer").setup()
         end,
     })
@@ -84,9 +92,16 @@ return packer.startup(function()
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
     })
+    use({
+        "lewis6991/spellsitter.nvim",
+        config = function()
+            require("spellsitter").setup()
+        end,
+    })
 
     -- Language Server
     use({ "ms-jpq/coq_nvim", branch = "coq" })
+    use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
     use({
         "neovim/nvim-lspconfig",
         config = function()

@@ -26,72 +26,20 @@ M.config = function()
         keymap_buf(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
     end
 
-    -- ---------------------------------------------------------------------------------------
-    -- -- From https://github.com/folke/trouble.nvim/issues/52
-    -- ---------------------------------------------------------------------------------------
-    -- local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
-    -- for type, icon in pairs(signs) do
-    --     local hl = "LspDiagnosticsSign" .. type
-    --     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    -- end
-    -- ---------------------------------------------------------------------------------------
-    -- ---------------------------------------------------------------------------------------
-
-    -- ---------------------------------------------------------------------------------------
-    -- -- From https://github.com/ChristianChiarulli/LunarVim/blob/rolling/lua/lsp/init.lua
-    -- ---------------------------------------------------------------------------------------
-    -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    --     virtual_text = {
-    --         prefix = "",
-    --         spacing = 0,
-    --     },
-    --     signs = true,
-    --     underline = true,
-    -- })
-
-    -- vim.lsp.protocol.CompletionItemKind = {
-    --     "   (Text) ",
-    --     "   (Method)",
-    --     "   (Function)",
-    --     "   (Constructor)",
-    --     " ﴲ  (Field)",
-    --     "[] (Variable)",
-    --     "   (Class)",
-    --     " ﰮ  (Interface)",
-    --     "   (Module)",
-    --     " 襁 (Property)",
-    --     "   (Unit)",
-    --     "   (Value)",
-    --     " 練 (Enum)",
-    --     "   (Keyword)",
-    --     " ﬌  (Snippet)",
-    --     "   (Color)",
-    --     "   (File)",
-    --     "   (Reference)",
-    --     "   (Folder)",
-    --     "   (EnumMember)",
-    --     " ﲀ  (Constant)",
-    --     " ﳤ  (Struct)",
-    --     "   (Event)",
-    --     "   (Operator)",
-    --     "   (TypeParameter)",
-    -- }
-
-    ---------------------------------------------------------------------------------------
-    ---------------------------------------------------------------------------------------
-
-    -- lsp.pyright.setup(coq.lsp_ensure_capabilities({
-    --     settings = {
-    --         python = {
-    --             analysis = {
-    --                 useLibraryCodeForTypes = true,
-    --                 typeCheckingMode = "off",
-    --             },
-    --         },
-    --     },
-    --     capabilities = capabilities,
-    -- }))
-    -- lsp.texlab.setup(coq.lsp_ensure_capabilities({}))
+    lsp.pyright.setup(coq.lsp_ensure_capabilities({
+        settings = {
+            python = {
+                analysis = {
+                    useLibraryCodeForTypes = true,
+                    typeCheckingMode = "off",
+                },
+            },
+        },
+        capabilities = capabilities,
+        on_attach = on_attach,
+    }))
+    lsp.texlab.setup(coq.lsp_ensure_capabilities({}))
+    cmd([[ COQnow -s ]])
 end
 
 return M

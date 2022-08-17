@@ -3,82 +3,75 @@ cmd([[ autocmd BufWritePost plugins.lua PackerCompile ]])
 return packer.startup(function()
     use({ "wbthomason/packer.nvim" })
 
-    -- Productivity
+    -- Core
+    use({ "jghauser/mkdir.nvim" })
+    use({ "farmergreg/vim-lastplace" })
+    use({
+        "windwp/nvim-autopairs",
+        config = function()
+            require("conf_autopairs").config()
+        end,
+    })
     use({
         "echasnovski/mini.nvim",
         branch = "stable",
         config = function()
-            -- require("conf_mini").config()
-            require(mini.trailspace).setup()
+            require("conf_mini").config()
         end,
     })
-    use({ "tpope/vim-repeat" })
-    use({ "tpope/vim-surround" })
-    -- use({ "airblade/vim-rooter" })
-    use({ "farmergreg/vim-lastplace" })
-    -- use({ "windwp/nvim-projectconfig" })
-    use({ "untitled-ai/jupyter_ascending.vim" })
-    -- use({
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     config = function()
-    --         require("conf_blankline").config()
-    --     end,
-    -- })
-    -- use({
-    --     "windwp/nvim-autopairs",
-    --     config = function()
-    --         require("nvim-autopairs").setup()
-    --     end,
-    -- })
+    use({
+        "luukvbaal/nnn.nvim",
+        config = function()
+            require("conf_nnn").config()
+        end,
+    })
 
-    -- -- Git
-    -- use({
-    --     "lewis6991/gitsigns.nvim",
-    --     config = function() -- FIXME: Create conf file
-    --         require("gitsigns").setup({
-    --             signs = {
-    --                 add = {
-    --                     hl = "GitSignsAdd",
-    --                     text = "▎",
-    --                     numhl = "GitSignsAddNr",
-    --                     linehl = "GitSignsAddLn",
-    --                 },
-    --                 change = {
-    --                     hl = "GitSignsChange",
-    --                     text = "▎",
-    --                     numhl = "GitSignsChangeNr",
-    --                     linehl = "GitSignsChangeLn",
-    --                 },
-    --                 delete = {
-    --                     hl = "GitSignsDelete",
-    --                     text = "▎",
-    --                     numhl = "GitSignsDeleteNr",
-    --                     linehl = "GitSignsDeleteLn",
-    --                 },
-    --                 topdelete = {
-    --                     hl = "GitSignsDelete",
-    --                     text = "▎",
-    --                     numhl = "GitSignsDeleteNr",
-    --                     linehl = "GitSignsDeleteLn",
-    --                 },
-    --                 changedelete = {
-    --                     hl = "GitSignsChange",
-    --                     text = "▎",
-    --                     numhl = "GitSignsChangeNr",
-    --                     linehl = "GitSignsChangeLn",
-    --                 },
-    --             },
-    --         })
-    --     end,
-    -- })
+    -- Jupyter
+    use({ "untitled-ai/jupyter_ascending.vim" })
+
+    -- Projects
+    use({ "windwp/nvim-projectconfig" })
+    use({
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("conf_project_nvim").config()
+        end,
+    })
 
     -- Style
-    use({ "shaunsingh/nord.nvim" })
-    use({ "sainnhe/gruvbox-material" })
+    -- use({ "shaunsingh/nord.nvim" })
+    -- use({ "sainnhe/gruvbox-material" })
+    use({
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+            require("catppuccin").setup()
+        end,
+    })
     use({
         "norcalli/nvim-colorizer.lua",
         config = function()
             require("colorizer").setup()
+        end,
+    })
+    use({
+        "goolord/alpha-nvim",
+        requires = { "kyazdani42/nvim-web-devicons" },
+        config = function()
+            require("conf_alpha").config()
+        end,
+    })
+    use({
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("conf_trouble").config()
+        end,
+    })
+    use({
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("conf_blankline").config()
         end,
     })
     use({
@@ -99,8 +92,29 @@ return packer.startup(function()
         end,
     })
 
+    -- Git
+    use({
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup()
+        end,
+    })
+    use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+    use({
+        "akinsho/git-conflict.nvim",
+        config = function()
+            require("git-conflict").setup()
+        end,
+    })
+
     -- Language Server
-    use({ "ms-jpq/coq_nvim", branch = "coq" })
+    use({
+        "ms-jpq/coq_nvim",
+        branch = "coq",
+        config = function()
+            require("conf_coq").config()
+        end,
+    })
     use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
     use({
         "neovim/nvim-lspconfig",

@@ -1,6 +1,7 @@
 vg = vim.g
 cmd = vim.cmd
 opt = vim.opt
+vg.python3_host_prog = "~/.mambaforge/envs/utils/bin/python"
 
 function keymap(mode, after, before, opts)
     local options = { noremap = true }

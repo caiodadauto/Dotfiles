@@ -7,38 +7,22 @@ mkdir -p ~/.local/share/zsh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 sudo apt install $(awk '{print $1}' ../programs/apt.list)
 
-# Progress bar
-cd /tmp
-wget http://ftp.gnu.org/gnu/coreutils/coreutils-9.0.tar.xz
-tar xvJf coreutils-9.0.tar.xz
-cd coreutils-9.0/
-wget https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.9-9.0.patch
-patch -p1 -i advcpmv-0.9-9.0.patch
-./configure
-make
-mv ./src/cp ~/.local/bin/cpg
-mv ./src/mv ~/.local/bin/mvg
-mv ./src/rm ~/.local/bin/rmg
-
 #NNN
 cd /tmp
 wget https://github.com/jarun/nnn/archive/refs/tags/v4.4.tar.gz
 cd nnn-4.4
 make O_NERD=1
 mv nnn ~/.local/bin
-
-#Glow
-cd /tmp
-wget https://github.com/charmbracelet/glow/releases/download/v1.4.1/glow_1.4.1_linux_amd64.deb
-dpkg -i glow_1.4.1_linux_amd64.deb
+cd ~
 
 #nsxiv
 cd /tmp
 git clone https://github.com/nsxiv/nsxiv.git
 cd nsxiv
-git checkout v28
+git checkout v30
 make
 mv nsxiv ~/.local/bin
+cd ~
 
 #latexindent
 cd /tmp
@@ -48,11 +32,11 @@ perl Makefile.PL
 sudo make install
 cd ~
 
-
 #dragon
 cd /tmp
 git clone https://github.com/mwh/dragon.git
 cd dragon
+git checkout v1.2.0
 make
 mv dragon ~/.local/bin
 cd ~
@@ -63,15 +47,21 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-cd $HOME/.cargo/bin
-./cargo install $(awk '{print $1}' $HOME/Dotfiles/programs/cargo.list)
+./$HOME/.cargo/bin/cargo install $(awk '{print $1}' $HOME/Dotfiles/programs/cargo.list)
+cd /tmp
+git clone https://github.com/BurntSushi/ripgrep
+cd ripgrep
+git checkout 13.0.0
+cargo build --features 'pcre2'
+mv target/debug/rg ~/.local/bin
+
 
 # Starship
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b $HOME/.local/bin
 
 # Neovim
 cd ~
-wget https://github.com/neovim/neovim/releases/download/v0.6.0/nvim.appimage
+wget https://github.com/neovim/neovim/releases/download/v0.7.2/nvim.appimage
 chmod +x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 git clone https://github.com/wbthomason/packer.nvim\

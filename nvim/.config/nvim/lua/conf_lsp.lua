@@ -10,6 +10,17 @@ M.config = function()
     keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
     keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
+    local signs = {
+        Error = " ",
+        Warn = " ",
+        Hint = " ",
+        Info = " ",
+    }
+    for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+
     local on_attach = function(client, bufnr)
         -- Enable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")

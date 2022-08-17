@@ -8,6 +8,7 @@ M.config = function()
       "help",
       "terminal",
       "dashboard",
+      "alpha",
     }
     vim.g.indent_blankline_buftype_exclude = { "terminal" }
 

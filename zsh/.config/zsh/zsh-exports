@@ -7,6 +7,7 @@
 HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE="$XDG_DATA_HOME"/zsh/history
+BLK="03" CHR="03" DIR="04" EXE="02" REG="07" HARDLINK="05" SYMLINK="05" MISSING="08" ORPHAN="01" FIFO="06" SOCK="03" UNKNOWN="01"
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export PATH=$HOME/.cargo/bin:$PATH
@@ -16,9 +17,18 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship/config.toml
 export NVM_DIR="$HOME/.config/nvm"
 export GCM_CREDENTIAL_STORE="gpg"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+--color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+--color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
+export NNN_COLORS="#04020301;4231"
+export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$UNKNOWN"
 export NNN_FCOLORS='0B0B04060006060009060B06'
-export NNN_PLUG='c:autojump;d:diffs;f:finder;o:fzopen;m:nmount;x:togglex;p:preview-tui;v:preview-tabbed;'
+export NNN_PLUG='d:diffs;j:autojump;o:fzopen;p:preview-tui;i:imgview;D:dragdrop;w:wallpaper;r:fixname;'
 export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_OPENER='/home/caio/.config/nnn/plugins/nuke'
+export GUI=1
+export BAT_THEME="Catppuccin-frappe"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

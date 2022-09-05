@@ -1,12 +1,2 @@
-[python]
-disabled = true
-
-[package]
-symbol = ""
-
 [conda]
-symbol = "🅒 "
-ignore_base = false
-
-[lua]
-disabled = true
+disabled = false

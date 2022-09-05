@@ -19,12 +19,14 @@ if [ -f "/home/caio/.mambaforge/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
-mamba create -n utils python=3.9.12
+# mamba create -n utils python=3.9.12
 mamba activate utils
 mamba install pynvim black
+pip install --user libtmux
 # pip install pillow-simd ueberzug
 mamba deactivate
 ln -s ~/.mambaforge/envs/utils/bin/black ~/.local/bin
+ln -s ~/.mambaforge/envs/utils/bin/libmux ~/.local/bin
 
 mamba create -n dev python=3.9.12
 mamba activate dev

@@ -1,3 +1,3 @@
 #!/bin/zsh
-nvm install node
+nvm install --lts
 npm i -g pyright

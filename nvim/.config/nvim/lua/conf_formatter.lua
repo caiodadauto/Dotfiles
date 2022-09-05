@@ -3,6 +3,14 @@ local M = {}
 M.config = function()
     formatter = require("formatter")
 
+    local texpretty = function()
+        return {
+            exe = "texpty",
+            args = {"--no-comment-banner"},
+            stdin = true,
+            ignore_exitcode = true
+        }
+    end
     local black = function()
         return {
             exe = "black",

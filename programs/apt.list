@@ -41,3 +41,5 @@ libgtk-3-dev
 poppler-utils
 xclip
 tmux
+libmagickwand-dev
+librsvg2-dev

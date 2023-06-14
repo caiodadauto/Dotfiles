@@ -19,19 +19,15 @@ if [ -f "/home/caio/.mambaforge/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
-# mamba create -n utils python=3.9.12
+mamba create -n utils python=3.10
 mamba activate utils
-mamba install pynvim black
-pip install --user libtmux
-# pip install pillow-simd ueberzug
+mamba install pynvim
 mamba deactivate
-ln -s ~/.mambaforge/envs/utils/bin/black ~/.local/bin
-ln -s ~/.mambaforge/envs/utils/bin/libmux ~/.local/bin
 
-mamba create -n dev python=3.9.12
-mamba activate dev
-mamba install ipython jupyter jupyter_ascending jupytext
-jupyter nbextension install --py --sys-prefix jupyter_ascending
-jupyter nbextension     enable jupyter_ascending --sys-prefix --py
-jupyter serverextension enable jupyter_ascending --sys-prefix --py
-mamba deactivate
+# mamba create -n dev python=3.9.12
+# mamba activate dev
+# mamba install ipython jupyter jupyter_ascending jupytext
+# jupyter nbextension install --py --sys-prefix jupyter_ascending
+# jupyter nbextension     enable jupyter_ascending --sys-prefix --py
+# jupyter serverextension enable jupyter_ascending --sys-prefix --py
+# mamba deactivate

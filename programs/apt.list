@@ -11,7 +11,6 @@ libreadline-dev
 libbz2-dev
 zlib1g-dev
 libssh-dev
-ranger
 pass
 libboost-all-dev
 expat
@@ -27,7 +26,6 @@ atool
 catimg
 ffmpeg
 ffmpegthumbnailer
-zathura
 libimlib2-dev
 inotify-tools
 libxft-dev
@@ -43,3 +41,10 @@ xclip
 tmux
 libmagickwand-dev
 librsvg2-dev
+libharfbuzz-dev
+btop
+ufw
+fail2ban
+clamav
+tor
+privoxy

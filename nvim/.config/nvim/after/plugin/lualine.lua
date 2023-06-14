@@ -89,7 +89,7 @@ lualine.setup({
             {
                 "mode",
                 icon = { "" },
-                separator = { right = " ", left = "" },
+                separator = { right = "█", left = "█" },
             },
         },
         lualine_b = {},
@@ -159,14 +159,14 @@ lualine.setup({
             {
                 "progress",
                 icon = { "", align = "left" }, -- color = { fg = c.black } },
-                separator = { right = "", left = "" },
+                separator = { right = "█", left = "█" },
             },
         },
     },
     options = {
         disabled_filetypes = { "alpha" },
         globalstatus = true,
-        section_separators = { left = " ", right = " " },
+        section_separators = { left = "█", right = "█" },
         component_separators = { left = "", right = "" },
     },
 })

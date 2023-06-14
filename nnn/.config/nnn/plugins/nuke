@@ -105,6 +105,8 @@ handle_pdf() {
         mutool draw -F txt -i -- "${FPATH}" 1-10 | eval "$PAGER"
     elif type exiftool >/dev/null 2>&1; then
         exiftool "${FPATH}" | eval "$PAGER"
+    elif type sioyek >/dev/null 2>&1; then
+        sioyek "${FPATH}"
     else
         return
     fi

@@ -11,6 +11,7 @@ local packer_list = {
 	"ethanholz/nvim-lastplace",
 	"ahmedkhalf/project.nvim",
     'mhartington/formatter.nvim',
+    "mfussenegger/nvim-lint",
 	-----------
 	-- Style --
 	-----------

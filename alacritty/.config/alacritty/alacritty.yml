@@ -80,16 +80,16 @@ colors:
 font:
   normal:
     family: IosevkaTerm Nerd Font
-    style: Medium
-    bold:
-      family: IosevkaTerm Nerd Font
-      style: Bold
-    italic:
-      family: IosevkaTerm Nerd Font
-      style: Regular Italic
-    bold_italic:
-      family: IosevkaTerm Nerd Font
-      style: Bold Italic
+    style: Regular
+  bold:
+    family: IosevkaTerm Nerd Font
+    style: Bold
+  italic:
+    family: IosevkaTerm Nerd Font
+    style: Oblique
+  bold_italic:
+    family: IosevkaTerm Nerd Font
+    style: Bold Oblique
   size: 16.0
 
 # Nord

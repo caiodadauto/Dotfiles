@@ -1,14 +1,11 @@
-indent_size = 4
+Indent_size = 4
 local g = vim.g
 local opt = vim.opt
-local cmd = vim.cmd
 
 vim.loader.enable()
 
 g.mapleader = " "
 g.python3_host_prog = "~/.mambaforge/envs/utils/bin/python"
-g.catppuccin_flavour = "frappe"
--- g.python_recommended_style = 0
 
 opt.nu = true
 opt.wrap = false
@@ -24,16 +21,9 @@ opt.encoding = "UTF-8"
 opt.signcolumn = "yes"
 opt.shortmess = "filnxtToOFc"
 opt.completeopt = { "menuone", "noselect" }
-opt.tabstop = indent_size
-opt.softtabstop = indent_size
-opt.shiftwidth = indent_size
+opt.tabstop = Indent_size
+opt.softtabstop = Indent_size
+opt.shiftwidth = Indent_size
 opt.undofile = true
 opt.undodir = vim.fn.expand("$HOME") .. "/.local/share/nvim/undodir"
--- opt.colorcolumn = "100"
-
--- cmd([[
---     if has('termguicolors')
---         set termguicolors
---     endif
--- ]])
--- cmd([[colorscheme catppuccin]])
+opt.termguicolors = true

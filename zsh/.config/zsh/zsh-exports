@@ -2,7 +2,7 @@
 
 export GUI=1
 
-export TERM="screen-256color"
+export TERM=alacritty
 
 export HISTSIZE=1000000
 export SAVEHIST=1000000

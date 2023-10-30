@@ -149,11 +149,10 @@ function install_fonts {
 		[yY])
             cd /tmp
             wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Iosevka.zip
-            unzip Iosevka.zip
-            cp Iosevka/*.ttf ~/.local/share/fonts
             wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/IosevkaTerm.zip
+            unzip Iosevka.zip
             unzip IosevkaTerm.zip
-            cp IosevkaTerm/*.ttf ~/.local/share/fonts
+            cp *.ttf ~/.local/share/fonts
             cd ~
 			;;
 		*)
@@ -271,7 +270,8 @@ function install_rust {
 	case "$res" in
 		[yY])
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-            ./~/.cargo/bin/cargo install $(awk '{print $1}' ./pkglists/cargo.list)
+            cd ~/.cargo/bin
+            ./cargo install $(awk '{print $1}' $HOME/Dotfiles/pkglists/cargo.list)
 			;;
 		*)
 			;;
@@ -313,7 +313,7 @@ function install_neovim {
 
 function install_mamba {
 	br
-	read -r -p "Should neovim be installed? [Y/n] " res
+	read -r -p "Should mamba be installed? [Y/n] " res
 	case "$res" in
 		[yY])
             cd /tmp
@@ -338,12 +338,15 @@ function install_alacritty {
             git clone https://github.com/alacritty/alacritty.git
             cd alacritty
             git checkout v0.12.1
-            cargo build --release
+	    ln -s $HOME/.cargo/bin/cargo .
+            ./cargo build --release
             sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
             sudo cp target/release/alacritty /usr/local/bin
             sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
             sudo desktop-file-install extra/linux/Alacritty.desktop
             sudo update-desktop-database
+	    unlink cargo
+	    cd ~
 			;;
 		*)
 			;;
@@ -384,23 +387,26 @@ function set_py_envs {
 
 create_conf_dirs
 install_pkg
+install_neovim
+install_rust
+install_alacritty
 install_fonts
-set_zsh
-set_aux_colors
-gmk67_workaround
 install_sioyek
 install_tpm
 install_nnn
 install_chafa
 install_dragon
 install_fzf
-install_rust
 install_starship
-install_neovim
 install_mamba
-install_alacritty
+set_aux_colors
+set_zsh
+set_py_envs
+# set_configs
+# gmk67_workaround
 
 echo "Installation was DONE, reboot and"
 echo "=> [TMUX] Install the plugins doing Prefix + I in a tmux section"
 echo "=> [NNN] Change zathura by sioyek in function handle_pdf() into plugin Nuke"
 echo "=> [NEOVIM] Open neovim and do PackerCompile and PackerInstall"
+echo "=> [GMK67 Workaround] sudo echo "options hid_apple fnmode=2" > /etc/modprobe.d/hid_apple.conf"

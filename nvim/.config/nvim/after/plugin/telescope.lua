@@ -1,0 +1,22 @@
+local keymap = vim.keymap
+local builtin = require('telescope.builtin')
+local telescope = require("telescope")
+
+telescope.load_extension("undo")
+
+keymap.set("n", "gd", builtin.lsp_definitions, {})
+keymap.set("n", "gr", builtin.lsp_references, {})
+keymap.set("n", "gi", builtin.lsp_incoming_calls, {})
+keymap.set("n", "go", builtin.lsp_outgoing_calls, {})
+keymap.set('n', '<leader>p', builtin.find_files, {})
+keymap.set('n', '<leader>fg', builtin.live_grep, {})
+keymap.set('n', '<leader>fb', builtin.buffers, {})
+keymap.set('n', '<leader>fo', builtin.oldfiles, {})
+keymap.set('n', '<leader>fC', builtin.commands, {})
+keymap.set('n', '<leader>fc', builtin.command_history, {})
+keymap.set('n', '<leader>fh', builtin.help_tags, {})
+keymap.set('n', '<leader>fT', builtin.diagnostics, {})
+keymap.set('n', '<leader>ft', function()
+    builtin.diagnostics({bufnr=0})
+end,  {})
+keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>")

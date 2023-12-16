@@ -35,6 +35,8 @@ export NNN_FCOLORS='0B0B04060006060009060B06'
 export NNN_PLUG='d:diffs;j:autojump;o:fzopen;p:preview-tui;i:imgview;D:dragdrop;w:wallpaper;r:fixname;'
 export NNN_FIFO='/tmp/nnn.fifo'
 export NNN_OPENER='/home/caio/.config/nnn/plugins/nuke'
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 typeset -U path PATH
 path=($HOME/.local/bin $HOME/.cargo/bin $path)

@@ -134,7 +134,8 @@ function install_pkg {
 	read -r -p "Should system packages be installed? [Y/n] " res
 	case "$res" in
 		[yY])
-            sudo apt install $(awk '{print $1}' ./pkglists/apt.list)
+            # sudo apt install $(awk '{print $1}' ./pkglists/apt.list)
+            sudo pacman -Syu $(awk '{print $1}' ./pkglists/pacman.list)
 			;;
 		*)
 			;;
@@ -197,10 +198,11 @@ function install_nnn {
 	case "$res" in
 		[yY])
             cd /tmp
-            wget https://github.com/jarun/nnn/archive/refs/tags/v4.8.tar.gz
-            tar xzf v4.8.tar.gz
-            cd nnn-4.8
-            make O_NERD=1 O_GITSTATUS=1
+            wget https://github.com/jarun/nnn/archive/refs/tags/v4.9.tar.gz
+            tar xzf v4.9.tar.gz
+            cd nnn-4.9
+            # make O_NERD=1 O_GITSTATUS=1
+            make O_GITSTATUS=1
             mv nnn ~/.local/bin
             sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
             cd ~
@@ -298,9 +300,9 @@ function install_neovim {
 	case "$res" in
 		[yY])
             cd /tmp
-            wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-            chmod +x nvim.appimage
-            sudo mv nvim.appimage /usr/local/bin/nvim
+            # wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+            # chmod +x nvim.appimage
+            # sudo mv nvim.appimage /usr/local/bin/nvim
             git clone https://github.com/wbthomason/packer.nvim\
                 ~/.local/share/nvim/site/pack/packer/start/packer.nvim
             cd ~
@@ -320,13 +322,21 @@ function install_mamba {
             curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
             bash Mambaforge-$(uname)-$(uname -m).sh
             cd ~/.mambaforge/bin/
-            ./mamba config --set auto_activate_base false
+            ./conda config --set auto_activate_base false
+            ./conda config --set changeps1 False
             cd ~
 			;;
 		*)
 			;;
 	esac
 	cont
+}
+
+function install_nvm {
+    # FIXME: Setup the CONFIG dir before nvm install
+	br
+	read -r -p "Should node be installed? [Y/n] " res
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 }
 
 function install_alacritty {
@@ -388,6 +398,7 @@ function set_py_envs {
 create_conf_dirs
 install_pkg
 install_neovim
+install_nvm
 install_rust
 install_alacritty
 install_fonts

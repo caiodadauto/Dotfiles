@@ -134,8 +134,8 @@ function install_pkg {
 	read -r -p "Should system packages be installed? [Y/n] " res
 	case "$res" in
 		[yY])
-            # sudo apt install $(awk '{print $1}' ./pkglists/apt.list)
-            sudo pacman -Syu $(awk '{print $1}' ./pkglists/pacman.list)
+            sudo apt install $(awk '{print $1}' ./pkglists/apt.list)
+            # sudo pacman -Syu $(awk '{print $1}' ./pkglists/pacman.list)
 			;;
 		*)
 			;;
@@ -198,11 +198,10 @@ function install_nnn {
 	case "$res" in
 		[yY])
             cd /tmp
-            wget https://github.com/jarun/nnn/archive/refs/tags/v4.9.tar.gz
-            tar xzf v4.9.tar.gz
-            cd nnn-4.9
-            # make O_NERD=1 O_GITSTATUS=1
-            make O_GITSTATUS=1
+            wget https://github.com/jarun/nnn/archive/refs/tags/v5.0.tar.gz
+            tar xzf v5.0.tar.gz
+            cd nnn-5.0
+            make O_NERD=1 O_GITSTATUS=1
             mv nnn ~/.local/bin
             sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
             cd ~
@@ -294,17 +293,32 @@ function install_starship {
 	cont
 }
 
+function install_luarocks {
+	br
+	read -r -p "Should luarocks be installed? [Y/n] " res
+	case "$res" in
+		[yY])
+            cd /tmp
+            wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz
+            tar zxpf luarocks-3.11.1.tar.gz
+            cd luarocks-3.11.1
+            ./configure && make && sudo make install
+			;;
+		*)
+			;;
+	esac
+	cont
+}
+
 function install_neovim {
 	br
 	read -r -p "Should neovim be installed? [Y/n] " res
 	case "$res" in
 		[yY])
             cd /tmp
-            # wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-            # chmod +x nvim.appimage
-            # sudo mv nvim.appimage /usr/local/bin/nvim
-            git clone https://github.com/wbthomason/packer.nvim\
-                ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+            wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+            chmod +x nvim.appimage
+            sudo mv nvim.appimage /usr/local/bin/nvim
             cd ~
 			;;
 		*)
@@ -347,16 +361,16 @@ function install_alacritty {
             cd /tmp
             git clone https://github.com/alacritty/alacritty.git
             cd alacritty
-            git checkout v0.12.1
-	    ln -s $HOME/.cargo/bin/cargo .
+            git checkout v0.15.1
+            ln -s $HOME/.cargo/bin/cargo .
             ./cargo build --release
             sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
             sudo cp target/release/alacritty /usr/local/bin
             sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
             sudo desktop-file-install extra/linux/Alacritty.desktop
             sudo update-desktop-database
-	    unlink cargo
-	    cd ~
+            unlink cargo
+            cd ~
 			;;
 		*)
 			;;
@@ -395,16 +409,16 @@ function set_py_envs {
 	cont
 }
 
-create_conf_dirs
-install_pkg
-install_neovim
-install_nvm
+# create_conf_dirs
+# install_pkg
+# install_fonts
+# install_luarocks
+# install_neovim
+# install_nvm
 install_rust
 install_alacritty
-install_fonts
 install_sioyek
 install_tpm
-install_nnn
 install_chafa
 install_dragon
 install_fzf
@@ -412,12 +426,13 @@ install_starship
 install_mamba
 set_aux_colors
 set_zsh
+install_nnn
 set_py_envs
 # set_configs
 # gmk67_workaround
 
 echo "Installation was DONE, reboot and"
 echo "=> [TMUX] Install the plugins doing Prefix + I in a tmux section"
+echo "=> [NODE] Install all packages in node.list"
 echo "=> [NNN] Change zathura by sioyek in function handle_pdf() into plugin Nuke"
-echo "=> [NEOVIM] Open neovim and do PackerCompile and PackerInstall"
 echo "=> [GMK67 Workaround] sudo echo "options hid_apple fnmode=2" > /etc/modprobe.d/hid_apple.conf"

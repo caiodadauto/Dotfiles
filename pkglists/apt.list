@@ -1,6 +1,7 @@
 python3-venv
 luarocks
 clang
+cmake
 zsh
 stow
 discord

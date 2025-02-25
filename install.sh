@@ -58,7 +58,7 @@ function set_zsh {
 	read -r -p "Should ZSH be set as default? [Y/n] " res
 	case "$res" in
 		[yY])
-            chsh -s /bin/zsh
+            chsh -s $(which zsh)
 			;;
 		*)
 			;;
@@ -78,7 +78,7 @@ function set_aux_colors {
             mkdir -p ~/.config/btop
             mkdir -p ~/.config/bat/themes
             cp -r btop/themes/ ~/.config/btop
-            cp bat/*.tmTheme ~/.config/bat/themes
+            cp bat/themes/*.tmTheme ~/.config/bat/themes
             cp -v zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh ~/.local/share/catppuccin
             cd ~
 			;;
@@ -171,6 +171,7 @@ function install_sioyek {
             wget https://github.com/ahrm/sioyek/releases/download/v2.0.0/sioyek-release-linux.zip
             unzip sioyek-release-linux.zip
             mv Sioyek-x86_64.AppImage ~/.local/bin/sioyek
+            ln -s ~/.local/bin/sioyek ~/.local/bin/zathura
             cd ~
 			;;
 		*)
@@ -203,7 +204,7 @@ function install_nnn {
             cd nnn-5.0
             make O_NERD=1 O_GITSTATUS=1
             mv nnn ~/.local/bin
-            sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
+            # sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
             cd ~
 			;;
 		*)
@@ -243,6 +244,25 @@ function install_dragon {
             git checkout v1.2.0
             make
             mv dragon ~/.local/bin
+            cd ~
+			;;
+		*)
+			;;
+	esac
+	cont
+}
+
+function install_nsxiv {
+	br
+	read -r -p "Should nsxiv be installed? [Y/n] " res
+	case "$res" in
+		[yY])
+            cd /tmp
+            git clone https://github.com/nsxiv/nsxiv.git
+            cd nsxiv
+            git checkout v33
+            make
+            mv nsxiv ~/.local/bin
             cd ~
 			;;
 		*)
@@ -316,9 +336,9 @@ function install_neovim {
 	case "$res" in
 		[yY])
             cd /tmp
-            wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-            chmod +x nvim.appimage
-            sudo mv nvim.appimage /usr/local/bin/nvim
+            wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
+            chmod +x nvim-linux-x86_64.appimage
+            sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
             cd ~
 			;;
 		*)
@@ -332,10 +352,10 @@ function install_mamba {
 	read -r -p "Should mamba be installed? [Y/n] " res
 	case "$res" in
 		[yY])
-            cd /tmp
-            curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
-            bash Mambaforge-$(uname)-$(uname -m).sh
-            cd ~/.mambaforge/bin/
+	    #        cd /tmp
+	    # curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+	    # bash Miniforge3-$(uname)-$(uname -m).sh
+            cd ~/.miniforge3/bin/
             ./conda config --set auto_activate_base false
             ./conda config --set changeps1 False
             cd ~
@@ -350,7 +370,10 @@ function install_nvm {
     # FIXME: Setup the CONFIG dir before nvm install
 	br
 	read -r -p "Should node be installed? [Y/n] " res
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    export XDG_CACHE_HOME=$HOME/.cache
+    export XDG_CONFIG_HOME=$HOME/.config
+    export XDG_DATA_HOME=$HOME/.local/share
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 }
 
 function install_alacritty {
@@ -383,25 +406,18 @@ function set_py_envs {
 	read -r -p "Should Python env be set? [Y/n] " res
 	case "$res" in
 		[yY])
-            __conda_setup="$('~/.mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+	    __conda_setup="$('~/.miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
             if [ $? -eq 0 ]; then
                 eval "$__conda_setup"
             else
-                if [ -f "~/.mambaforge/etc/profile.d/conda.sh" ]; then
-                    . "~/.mambaforge/etc/profile.d/conda.sh"
+                if [ -f "~/.miniforge3/etc/profile.d/conda.sh" ]; then
+                    . "~/.miniforge3/etc/profile.d/conda.sh"
                 else
-                    export PATH="~/.mambaforge/bin:$PATH"
+                    export PATH="~/.miniforge3/bin:$PATH"
                 fi
             fi
             unset __conda_setup
-
-            if [ -f "~/.mambaforge/etc/profile.d/mamba.sh" ]; then
-                . "~/.mambaforge/etc/profile.d/mamba.sh"
-            fi
-            mamba create -n utils python=3.10
-            mamba activate utils
-            mamba install pynvim
-            mamba deactivate
+            mamba create -n utils python=3.12 pynvim
 			;;
 		*)
 			;;
@@ -409,18 +425,18 @@ function set_py_envs {
 	cont
 }
 
-# create_conf_dirs
-# install_pkg
-# install_fonts
-# install_luarocks
-# install_neovim
-# install_nvm
+create_conf_dirs
+install_pkg
+install_fonts
+install_neovim
+install_nvm
 install_rust
 install_alacritty
 install_sioyek
 install_tpm
 install_chafa
 install_dragon
+install_nsxiv
 install_fzf
 install_starship
 install_mamba
@@ -428,11 +444,12 @@ set_aux_colors
 set_zsh
 install_nnn
 set_py_envs
+# install_luarocks
 # set_configs
 # gmk67_workaround
 
 echo "Installation was DONE, reboot and"
 echo "=> [TMUX] Install the plugins doing Prefix + I in a tmux section"
-echo "=> [NODE] Install all packages in node.list"
-echo "=> [NNN] Change zathura by sioyek in function handle_pdf() into plugin Nuke"
+echo "=> [NODE] Install npm and all packages in node.list"
+echo "=> [NNN] Check USE_NUKE is 1 in fzopen pluging"
 echo "=> [GMK67 Workaround] sudo echo "options hid_apple fnmode=2" > /etc/modprobe.d/hid_apple.conf"

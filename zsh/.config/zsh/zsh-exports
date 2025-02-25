@@ -32,7 +32,7 @@ BLK="03" CHR="03" DIR="04" EXE="02" REG="07" HARDLINK="05" SYMLINK="05" MISSING=
 export NNN_COLORS="#04020301;4231"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$UNKNOWN"
 export NNN_FCOLORS='0B0B04060006060009060B06'
-export NNN_PLUG='d:diffs;j:autojump;o:fzopen;p:preview-tui;i:imgview;D:dragdrop;w:wallpaper;r:fixname;'
+export NNN_PLUG='d:diffs;j:autojump;o:fzopen;p:preview-tui;i:imgview;D:dragdrop;w:wallpaper;r:fixname;u:getplugs'
 export NNN_FIFO='/tmp/nnn.fifo'
 export NNN_OPENER='/home/caio/.config/nnn/plugins/nuke'
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

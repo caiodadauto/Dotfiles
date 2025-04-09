@@ -425,6 +425,20 @@ function set_py_envs {
 	cont
 }
 
+
+function set_pyx_envs {
+	br
+	read -r -p "Should Python env via pipx be set? [Y/n] " res
+	case "$res" in
+		[yY])
+            pipx install poetry
+			;;
+		*)
+			;;
+	esac
+	cont
+}
+
 create_conf_dirs
 install_pkg
 install_fonts

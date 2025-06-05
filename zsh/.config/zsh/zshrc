@@ -1,44 +1,32 @@
 #!/bin/zsh
 
-# some useful options (man zshoptions)
+# Some useful options (man zshoptions)
+unsetopt BEEP # beeping is annoying
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
 setopt hist_ignore_all_dups
-stty stop undef		# Disable ctrl-s to freeze terminal.
+set show-mode-in-prompt on
+stty stop undef	# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
-# beeping is annoying
-unsetopt BEEP
+source $XDG_DATA_HOME/catppuccin/catppuccin_mocha-zsh-syntax-highlighting.zsh
+source "$HOME/.cargo/env"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# completions
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-# zstyle ':completion::complete:lsof:*' menu yes select
-zmodload zsh/complist
-# compinit
-_comp_options+=(globdots)		# Include hidden files.
-
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-# Colors
-autoload -Uz colors && colors
-
-# Start some cli
-eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(sheldon source)"
 
-# Normal files to source
-source "$ZDOTDIR/zsh-exports"
-source "$ZDOTDIR/zsh-vim-mode"
-source "$ZDOTDIR/zsh-aliases"
+# # Edit line in vim with ctrl-e:
+# autoload edit-command-line; zle -N edit-command-line
+# # bindkey '^e' edit-command-line
+autoload -Uz colors && colors
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
-# Key-bindings
 bindkey -s '^o' 'nnn^M'
 bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
@@ -51,27 +39,17 @@ bindkey "^j" down-line-or-beginning-search # Down
 bindkey -r "^u"
 bindkey -r "^d"
 
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
+
+source "$ZDOTDIR/zsh-exports"
+source "$ZDOTDIR/zsh-vim-mode"
+source "$ZDOTDIR/zsh-aliases"
+
 autoload -Uz compinit
+_comp_options+=(globdots) # Include hidden files.
 compinit
-
-# Colors
-source $XDG_DATA_HOME/catppuccin/catppuccin_mocha-zsh-syntax-highlighting.zsh
-
-# Cargo
-source "$HOME/.cargo/env"
-
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-# [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-compinit
-
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-# bindkey '^e' edit-command-line
-#
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [ -z "$TMUX" ]; then
     exec tmux new-session -A -s main

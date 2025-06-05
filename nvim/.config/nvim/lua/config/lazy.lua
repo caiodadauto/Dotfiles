@@ -24,6 +24,6 @@ require("lazy").setup({
   spec = {
     { import = "plugins" }
   },
-  install = { colorscheme = { "catppuccin-mocha" } },
+  install = { colorscheme = { "catppuccin-macchiato" } },
   checker = { enabled = true, notify = false },
 })

@@ -7,7 +7,7 @@ vim.loader.enable()
 
 g.mapleader = " "
 g.maplocalleader = "\\"
-g.python3_host_prog = "~/.mambaforge/envs/utils/bin/python"
+g.python3_host_prog = "~/.pixi/envs/pynvim/bin/python"
 
 opt.nu = true
 opt.wrap = false

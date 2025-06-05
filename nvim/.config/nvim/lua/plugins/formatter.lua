@@ -46,6 +46,13 @@ return {
                 }
             end
 
+            local beautysh = function()
+                return {
+                    exe = "beautysh",
+                    args = { "-i", "4", vim.fn.shellescape(vim.api.nvim_buf_get_name(0), true) },
+                }
+            end
+
             return {
                 logging = false,
                 filetype = {
@@ -53,6 +60,9 @@ return {
                     lua = { stylua },
                     cpp = { clangformat },
                     tex = { indentlatex },
+                    zsh = { beautysh },
+                    bash = { beautysh },
+                    sh = { beautysh },
                 },
             }
         end,
